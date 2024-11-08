@@ -1,0 +1,143 @@
+#code 3
+
+The knapsack problem is a popular optimization problem in computer science and combinatorial optimization. Given a set of items, each with a weight and a value, the goal is to determine the most valuable combination of items to include in a knapsack without exceeding a specified weight limit.
+
+There are two main types:
+
+0/1 Knapsack: Each item can be included or excluded entirely (no partial items).
+Fractional Knapsack: Items can be broken into fractions, allowing partial inclusion.
+The objective is to maximize the total value of selected items without going over the weight limit
+
+Fractional
+In the fractional knapsack problem, items can be divided, meaning you can take any fraction of an item instead of being restricted to taking the whole item or none at all. This flexibility allows for a greedy algorithm to find the optimal solution.
+
+Here’s how it works:
+
+Calculate the value-to-weight ratio for each item.
+Sort items in descending order based on this ratio.
+Add items to the knapsack starting from the highest ratio, taking as much of each item as possible until reaching the weight limit.
+If an item cannot fit entirely, take the fraction that fits.
+This method ensures that the solution is optimal, as the algorithm maximizes the value-to-weight efficiency at each step.
+
+Dynamic
+In the 0/1 knapsack problem, dynamic programming (DP) is used to find the optimal solution. Unlike the fractional knapsack problem, here you can't take fractional items—each item is either included or excluded entirely.
+
+Approach
+Define the DP Table: Create a 2D table dp[i][w], where i represents items, and w represents the current weight capacity.
+Base Case: When there are no items (i=0) or capacity is zero (w=0), the maximum value is zero.
+Recurrence Relation:
+If the weight of the i-th item is less than or equal to the current capacity w, then you have two options:
+Include the item: dp[i][w] = value[i-1] + dp[i-1][w - weight[i-1]]
+Exclude the item: dp[i][w] = dp[i-1][w]
+Take the maximum of including or excluding the item.
+Result: The value at dp[n][W] (where n is the number of items and W is the knapsack’s capacity) is the maximum achievable value.
+Time Complexity
+This algorithm has a time complexity of 
+𝑂
+(
+𝑛
+×
+𝑊
+)
+O(n×W), making it efficient for moderate values of items n and capacity W.
+
+#code 2
+
+Huffman encoding itself is a type of greedy algorithm used for data compression. Here’s how it applies a greedy approach:
+
+Greedy Approach in Huffman Encoding
+The core of Huffman encoding is to minimize the total length of the encoded message by assigning shorter codes to more frequent characters. The algorithm accomplishes this using a greedy strategy that makes locally optimal choices at each step, which ultimately leads to an overall optimal solution. Here’s how this greedy method works in the context of Huffman encoding:
+
+Frequency-Based Priority:
+
+Characters with higher frequencies are assigned shorter codes.
+At each step, the algorithm selects the two characters (or groups of characters) with the lowest frequencies to combine into a subtree, minimizing the cost incrementally.
+Combining Nodes with Minimum Frequency:
+
+By always combining the two nodes with the smallest frequencies first, the algorithm ensures that the least frequent characters are placed deeper in the tree, resulting in longer codes. This step-by-step approach is greedy because it makes the immediate best choice to reduce the total code length.
+Minimizing the Code Length:
+
+As a result, the more frequent a character, the closer it is to the root, yielding a shorter binary code.
+This greedy choice at each step of merging nodes leads to an optimal prefix-free code that has the minimum possible average code length.
+Example of Greedy Decisions
+If you have characters with frequencies {A: 5, B: 9, C: 12, D: 13, E: 16, F: 45}, the greedy steps are:
+
+Combine A and B (the two with the smallest frequencies) to create a node with frequency 14.
+Then, combine the next two smallest nodes, e.g., C and the new node (14), continuing until the tree is complete.
+Each step makes a locally optimal choice (merging the smallest frequencies) to reduce the overall code length, which is the hallmark of a greedy algorithm.
+
+Why Huffman Encoding is Greedy
+Huffman encoding builds the code tree in a way that, at each stage, it minimizes the cost for the current characters. This locally optimal choice (combining the smallest frequencies) leads to a globally optimal solution, which is the basis of all greedy algorithms. The result is a tree with an optimal code for each character, achieving the best compression possible without requiring backtracking or re-evaluation.
+
+
+code 1
+
+In the recursive approach, we define the Fibonacci function fib(n) as follows:
+
+Base Cases:
+If n = 0, return 0.
+If n = 1, return 1.
+Recursive Case:
+For n > 1, return fib(n - 1) + fib(n - 2).
+Pros and Cons of Recursive Approach
+Pros: Simple and straightforward to implement.
+Cons: Has an exponential time complexity 
+𝑂
+(
+2
+𝑛
+)
+O(2 
+n
+ ) because it recalculates values many times, leading to inefficient performance for large n.
+
+Non-Recursive (Iterative) Approach
+In the non-recursive (or iterative) approach, we use a loop to calculate the Fibonacci sequence up to n.
+
+Here’s how it works:
+
+Initialize two variables a and b to store the previous two numbers in the sequence (starting with 0 and 1).
+For each step, calculate the next number by summing a and b.
+Update a and b accordingly.
+
+#code  5
+The N-Queens Problem is a classic combinatorial problem in which the goal is to place 
+𝑁
+N queens on an 
+𝑁
+×
+𝑁
+N×N chessboard such that no two queens threaten each other. In chess, a queen can attack any other piece in the same row, column, or diagonal. Therefore, the problem requires arranging the queens so that none share the same row, column, or diagonal.
+
+Problem Statement
+Given an 
+𝑁
+×
+𝑁
+N×N chessboard, place 
+𝑁
+N queens on the board such that:
+
+No two queens are in the same row.
+No two queens are in the same column.
+No two queens are on the same diagonal.
+The solution should return one or all possible arrangements of queens that satisfy these constraints.
+
+Approaches to Solve the N-Queens Problem
+The N-Queens problem is commonly solved using backtracking, which is an efficient way to explore potential solutions by incrementally building a solution and discarding those that fail to satisfy the constraints.
+
+1. Backtracking Algorithm
+In the backtracking approach:
+
+Place queens row by row, starting with the first row.
+For each row, try placing a queen in each column.
+Check if placing the queen in the chosen column is safe:
+Ensure no other queen is in the same column.
+Ensure no other queen is on the same diagonal.
+If the position is safe, place the queen and move to the next row.
+If placing a queen in any column of a row fails (i.e., no position is safe), backtrack to the previous row and move the queen to the next column.
+Repeat this process until all queens are placed.
+
+
+
+
